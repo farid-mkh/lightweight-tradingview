@@ -10,6 +10,10 @@ export default {
     chart: null,
     candleSeries: null,
     volumeSeries: null,
+    colors: {
+      increase: "rgba(107, 255, 193, 0.25)",
+      decrease: "rgba(255, 128, 159, 0.25)",
+    },
   }),
   computed: {
     chartConfig() {
@@ -110,10 +114,19 @@ export default {
       nextBar.bar.value = Math.random() * 100;
       nextBar.bar.color =
         nextBar.bar.close < nextBar.bar.open
-          ? "rgba(255, 128, 159, 0.25)"
-          : "rgba(107, 255, 193, 0.25)";
+          ? this.colors.decrease
+          : this.colors.increase;
 
       return nextBar.bar;
+    },
+    setOrder(price, color, title) {
+      return this.candleSeries.createPriceLine({
+        price,
+        color,
+        lineWidth: 2,
+        title,
+        draggable: true,
+      });
     },
   },
   mounted() {
@@ -130,7 +143,6 @@ export default {
     }
 
     this.controlResponsive();
-
     setInterval(() => {
       const bar = this.setNextBar();
       this.candleSeries.update(bar);
@@ -139,6 +151,8 @@ export default {
 
     window.addEventListener("resize", this.controlResponsive, false);
     this.setNextBar();
+
+    this.setOrder("75", "red", "your sell order");
   },
 };
 </script>
