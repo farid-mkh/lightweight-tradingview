@@ -1,5 +1,9 @@
 <template>
-  <LightweightTradingview msg="Welcome to Your Vue.js App" />
+  <div class="row">
+    <div class="col-6" style="height: 300px">
+      <LightweightTradingview />
+    </div>
+  </div>
 </template>
 
 <script>

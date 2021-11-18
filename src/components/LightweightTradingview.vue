@@ -17,14 +17,14 @@ export default {
         width: window.innerWidth,
         height: window.innerHeight,
         layout: {
-          backgroundColor: "#253248",
+          backgroundColor: "transparent",
         },
         grid: {
           vertLines: {
-            color: "#334158",
+            color: "#ddd",
           },
           horzLines: {
-            color: "#334158",
+            color: "#ddd",
           },
         },
         crosshair: {
@@ -117,7 +117,7 @@ export default {
     },
   },
   mounted() {
-    this.chart = createChart("#lightweight-chart", this.chartConfig);
+    this.chart = createChart("lightweight-chart", this.chartConfig);
 
     this.candleSeries = this.chart.addCandlestickSeries(this.candlesConfig);
 
@@ -142,6 +142,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
